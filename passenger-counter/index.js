@@ -1,14 +1,16 @@
-// document.getElementById('count-el').innerText = 5
-
 let count = 0
-const incrementBTN = document.getElementById('increment-btn')
 const countHTML = document.getElementById('count-el')
+const saveEL = document.getElementById('save-el')
 
 countHTML.innerHTML = count
 
-incrementBTN.addEventListener('click', increment)
-
 function increment() {
     count++
-    countHTML.innerHTML = count
+    countHTML.textContent = count
+}
+
+function save() {
+    saveEL.textContent += `${count} - `
+    count = 0
+    countHTML.textContent = count
 }
