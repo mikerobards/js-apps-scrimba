@@ -14,5 +14,10 @@ for (let i=0;i<myLeads.length;i++) {
     console.log(myLeads[i])
 }
 
-myLeads.forEach(i => ulEl.innerHTML += `<li>${i}</li>`)
+myLeads.forEach(i => {
+    const li = document.createElement('li')
+    li.textContent = i
+    ulEl.append(li)
+    // ulEl.appendChild(`<li>${i}</li>`)
+})
 
