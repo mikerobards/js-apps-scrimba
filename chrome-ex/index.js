@@ -12,13 +12,9 @@ if(leadsFromLocalStorage) {
     render(myLeads)
 }
 
-const tabs = [
-    {url: "https://www.linkedin.com/in/per-harald-borgen/"}
-]
-
-// localStorage.setItem("myLeads", "www.examplelead.com")
-// console.log(localStorage.getItem('myLeads'))
-// localStorage.clear()
+// const tabs = [
+//     {url: "https://www.linkedin.com/in/per-harald-borgen/"}
+// ]
 
 inputBtn.addEventListener('click', () => {
     myLeads.push(inputEl.value)
@@ -35,10 +31,11 @@ deleteBtn.addEventListener('dblclick', () => {
 })
 
 tabBtn.addEventListener('click', () => {
-    console.log(tabs[0].url)
-    myLeads.push(tabs[0].url)
-    localStorage.setItem("myLeads", JSON.stringify(myLeads))
-    render(myLeads)
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        render(myLeads)
+    })
 })
 
 function render(leads) {
